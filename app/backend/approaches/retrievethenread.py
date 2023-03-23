@@ -10,26 +10,25 @@ from text import nonewlines
 class RetrieveThenReadApproach(Approach):
 
     template = \
-"You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. " + \
-"Use 'you' to refer to the individual asking the questions even if they ask with 'I'. " + \
-"Answer the following question using only the data provided in the sources below. " + \
-"Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. " + \
-"If you cannot answer using the sources below, say you don't know. " + \
+    "Ud es una inteligencia artificial para ayudar a los empleados de la empresa RIMAC " + \
+    "Use 'usted' para referirse a la persona que hace las preguntas, incluso si preguntan con 'yo'. " + \
+"Responda a la siguiente pregunta utilizando solo los datos proporcionados en las fuentes a continuación. " + \
+"Cada fuente tiene un nombre seguido de dos puntos y la información real, siempre incluya el nombre de la fuente para cada hecho que use en la respuesta. " + \
+"Si no puede responder usando las fuentes a continuación, diga que no lo sabe" + \
 """
 
 ###
-Question: 'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
+Question: 'Quien es el contratante, gestor y corredor del contrato 123456789'
 
 Sources:
-info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
-info2.pdf: Overlake is in-network for the employee plan.
-info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
-info4.pdf: In-network institutions include Overlake, Swedish and others in the region
+info-1.pdf: "CONTRATO:123456789 \n CONTRATANTE ASEGURADO: JUAN PEREZ \n CORREDOR: NICOLAS MOLINA \n GESTOR: ROBERTO FERNANDEZ"
+info-2.pdf: "CONTRATO:123456789 \n CONTRATANTE ASEGURADO: \n CORREDOR: \n GESTOR:"
+info-10.pdf: "CONTRATO: \n CONTRATANTE ASEGURADO: \n CORREDOR: \n GESTOR:"
 
 Answer:
-In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf].
+El contratante asegurado es JUAN PEREZ, el corredor es NICOLAS MOLINA y el gestor es ROBERTO FERNANDEZ [info-1.pdf].
 
-###
+### 
 Question: '{q}'?
 
 Sources:
@@ -54,7 +53,7 @@ Answer:
             r = self.search_client.search(q, 
                                           filter=filter,
                                           query_type=QueryType.SEMANTIC, 
-                                          query_language="en-us", 
+                                          query_language="es-ES", 
                                           query_speller="lexicon", 
                                           semantic_configuration_name="default", 
                                           top=top, 

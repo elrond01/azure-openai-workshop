@@ -1,0 +1,4 @@
+Ensuring search index gptkbindex exists
+Search index gptkbindex already exists
+Processing files...
+.\data\*
